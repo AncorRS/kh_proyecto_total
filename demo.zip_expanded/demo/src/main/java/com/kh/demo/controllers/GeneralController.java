@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kh.demo.models.Empleado;
 import com.kh.demo.services.IEmpleadoService;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:8080" })
 @RestController
 @RequestMapping("/api")
 public class GeneralController {
 	
-	@Autowired(required = false)
+	@Autowired
 	private IEmpleadoService empleadoService;
 
 	@GetMapping("/empleados")
