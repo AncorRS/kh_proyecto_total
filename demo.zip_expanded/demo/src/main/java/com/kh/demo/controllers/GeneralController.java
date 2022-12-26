@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.demo.models.Empleado;
+import com.kh.demo.models.Vacaciones;
 import com.kh.demo.services.IEmpleadoService;
+import com.kh.demo.services.IVacacionesService;
 
 @CrossOrigin(origins = { "http://localhost:8080" })
 @RestController
@@ -18,9 +20,17 @@ public class GeneralController {
 	
 	@Autowired
 	private IEmpleadoService empleadoService;
+	
+	@Autowired
+	private IVacacionesService vacacionesService;
 
 	@GetMapping("/empleados")
-	public List<Empleado> index() {
+	public List<Empleado> getEmpleado() {
 		return empleadoService.findAll();
+	}
+	
+	@GetMapping("/vacaciones")
+	public List<Vacaciones> getVacaciones() {
+		return vacacionesService.findAll();
 	}
 }
