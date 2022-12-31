@@ -2,12 +2,9 @@ package com.kh.demo.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +30,7 @@ public class Empleado implements Serializable{
 	private String apellido1;
 	private String apellido2;
 	private String dni;
+	@Temporal(TemporalType.DATE)
 	private Date fecha_nac;
 	private String seg_soc;
 	private String cuenta_c;
@@ -50,10 +48,11 @@ public class Empleado implements Serializable{
 	private Integer puesto;
 	private Integer categoria;
 	private Integer grupo_vacaciones;
+	@Temporal(TemporalType.DATE)
 	private Date fecha_ini;
+	@Temporal(TemporalType.DATE)
 	private Date fecha_fin;
 	private String foto;
 	private String foto_min;
-	
 
 }

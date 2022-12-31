@@ -20,7 +20,7 @@ public class ResourceServerConfig  {
 
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
-		  .requestMatchers("/api/empleados").permitAll()
+		  .requestMatchers("/api/**").permitAll()
 		  .requestMatchers("/h2/**").permitAll()
 		  .anyRequest().authenticated()
 		.and().cors().configurationSource(corsConfigurationSource());

@@ -13,6 +13,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,18 +28,28 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "empleado_datos_admin")
-public class EmpleadoDatosAdmin {
+@Table(name = "empleado_datos_admin1")
+public class EmpleadoDatosAdmin1 {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_empleado;
 	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="usuario_id"),
+	inverseJoinColumns=@JoinColumn(name="role_id"),
+	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
+	private List<Role> roles;
+	
 	private String nombre_empleado;
 	private String dni;
 	private String clave;
+	
+	@Temporal(TemporalType.DATE)
 	private Date fecha_ini;
+	@Temporal(TemporalType.DATE)
 	private Date fecha_fin;
+	
 	private String tipo_contrato;
 	private String tipo_jornada;
 	private String puesto;

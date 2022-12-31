@@ -1,5 +1,8 @@
 package com.kh.demo.models;
 
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,12 +21,15 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "puesto")
-public class Puesto {
-	
+@Table(name="roles")
+public class Role implements Serializable{
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_puesto;
-	private String nombre_puesto;
-	private Integer id_empleado;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+	private String nombre;
+	
+	private static final long serialVersionUID = 1L;
 }
+

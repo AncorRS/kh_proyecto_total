@@ -1,9 +1,10 @@
 package com.kh.demo.models;
 
-import java.util.Date;
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,27 +27,26 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "empleado_datos_admin")
-public class EmpleadoDatosAdmin {
+@Table(name="a")
+public class A implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_empleado;
 	
-	private String nombre_empleado;
-	private String dni;
-	private String clave;
-	private Date fecha_ini;
-	private Date fecha_fin;
-	private String tipo_contrato;
-	private String tipo_jornada;
-	private String puesto;
-	private String categoria;
-	private String grupo;
-	private String canal;
-	private String empresa;
-	private Integer grupo_vacaciones;
-	private Integer salario;
-	private String complementos;
-	private String observaciones;
+	@Column(unique=true, length=20)
+	private String nombre;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="usuario_id"),
+	inverseJoinColumns=@JoinColumn(name="role_id"),
+	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
+	private List<Role> roles;
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 }
+
